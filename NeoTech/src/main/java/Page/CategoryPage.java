@@ -3,19 +3,31 @@ package Page;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import NewTech.NeoTech.BaseTest;
 
 public class CategoryPage extends BaseTest{
 	
+	@FindBy(id="list")private WebElement listObj;
+	@FindBy(className = "product_list")private WebElement prodList;//quick-view
+	@FindBy(className = "quick-view")private WebElement quickView;
+	
+	public CategoryPage(WebDriver driver)
+	{
+		PageFactory.initElements(driver,this);
+	}
+		
 	/**
 	 *function to click on List View
 	 */
 	public void ClickOnListView()
 	{
-		driver.findElement(By.id("list")).click();
+		listObj.click();
 	}
 	
 	/**
@@ -26,7 +38,7 @@ public class CategoryPage extends BaseTest{
 	public boolean AddDreesToCart(String colorName) throws InterruptedException
 	{
 		boolean isColorFound = false;
-		List<WebElement> wbs = driver.findElement(By.className("product_list")).findElements(By.className("product-container"));
+		List<WebElement> wbs = prodList.findElements(By.className("product-container"));
 	
 		for(int i=0;i<wbs.size();i++)
 		{
@@ -44,7 +56,7 @@ public class CategoryPage extends BaseTest{
 					Actions actions = new Actions(driver);
 					actions.moveToElement(quickViewElement).perform();
 					Thread.sleep(4000);
-					driver.findElement(By.className("quick-view")).click();
+					quickView.click();
 					break;
 				}								
 			}

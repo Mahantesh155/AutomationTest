@@ -14,6 +14,10 @@ import NewTech.NeoTech.BaseTest;
 public class QuickViewPage extends BaseTest
 {
 	@FindBy(xpath="(//button[@type='button'])[2]")private WebElement facebook;
+	@FindBy(id = "quantity_wanted")private WebElement quantityObj;
+	@FindBy(id = "wishlist_button")private WebElement wishListBtnObj;
+	@FindBy(xpath = "//a[@class='fancybox-item fancybox-close']")private WebElement closeFaceBookObj;
+	@FindBy(id = "add_to_cart")private WebElement addToCartObj;
 	
 	public void clickToShareOnFacebook()
 	{
@@ -60,37 +64,39 @@ public class QuickViewPage extends BaseTest
 	public void EnterQuantity(String quantity)
 	{
 		driver.switchTo().frame(0);
-		driver.findElement(By.id("quantity_wanted")).clear();
-		driver.findElement(By.id("quantity_wanted")).sendKeys(quantity);
+		quantityObj.clear();
+		quantityObj.sendKeys(quantity);
 	}
 	/**
 	 *function to click on WishList button
 	 */
 	public void AddProductToWishList()
 	{
-		driver.findElement(By.id("wishlist_button")).click();
-		driver.findElement(By.xpath("//a[@class='fancybox-item fancybox-close']")).click();
+		wishListBtnObj.click();
+		closeFaceBookObj.click();
 	}
 	/**
 	 *function to click on add to cart
 	 */
 	public void AddToCart() throws InterruptedException
 	{
-		driver.findElement(By.id("add_to_cart")).click();
+		addToCartObj.click();
 		Thread.sleep(2000);
 	}
 	
 	/**
 	 *function to get details of cart
 	 */
-	
+	@FindBy(className = "layer_cart_product")private WebElement cartProdDetail;
+	@FindBy(id = "layer_cart_product_quantity")private WebElement quantityOfProductObj;
+	@FindBy(id = "layer_cart_product_price")private WebElement product_priceObj;
 	public List<String> GetCartDetails()
 	{
 		List<String> detailsList =  new ArrayList<String>();
 		
-		String cartDetails = driver.findElement(By.className("layer_cart_product")).getText();
-		String quantityOfProduct = driver.findElement(By.id("layer_cart_product_quantity")).getText();
-		String priceProduct = driver.findElement(By.id("layer_cart_product_price")).getText();
+		String cartDetails = cartProdDetail.getText();
+		String quantityOfProduct = quantityOfProductObj.getText();
+		String priceProduct = product_priceObj.getText();
 		
 		detailsList.add(cartDetails);
 		detailsList.add(quantityOfProduct);
@@ -100,7 +106,6 @@ public class QuickViewPage extends BaseTest
 	/**
 	 *function to click on checkout
 	 */
-	
 	public void ClickOnProceedToCheckout() throws InterruptedException
 	{
 		List<WebElement> wbBtns = driver.findElements(By.className("btn-default"));
@@ -117,10 +122,5 @@ public class QuickViewPage extends BaseTest
 				}
 			}
 		}
-	}
-	
-	
-	
-	
-	
+	}		
 }

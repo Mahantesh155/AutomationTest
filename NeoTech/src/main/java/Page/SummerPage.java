@@ -12,14 +12,6 @@ public class SummerPage
 	@FindBy(xpath="//a[@id='color_20']")private WebElement blueIcon;
 	@FindBy(xpath="(//a[@class='quick-view'])[1]")private WebElement quickView;
 	
-	public void clickToQuickView()
-	{
-		if(blueIcon.isDisplayed())
-		{
-			quickView.click();
-		}
-		
-	}
 	public void clickList()
 	{
 		list.click();
@@ -27,6 +19,5 @@ public class SummerPage
 	public SummerPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver, this);
-	}
-	
+	}	
 }	

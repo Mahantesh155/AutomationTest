@@ -15,7 +15,6 @@ public class HomePage extends BaseTest
 	@FindBy(xpath="(//a[text()='Summer Dresses'])[2]")private WebElement clickSummer;
 	@FindBy(xpath="//span[text()='Mahantesh Patil']")private WebElement userAccount;
 	@FindBy(xpath="//span[text()='My wishlists']")private WebElement wishList;
-	@FindBy(className = "(By.className(\"product_infos\")).findElement(By.className(\"product-name\"))")private WebElement productDetail;
 	@FindBy(linkText = "View")private WebElement viewLink;
 			
 	/**

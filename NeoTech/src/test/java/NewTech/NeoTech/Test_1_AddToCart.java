@@ -33,7 +33,7 @@ public class Test_1_AddToCart extends BaseTest
 		Assert.assertTrue(getTitlte().contains("Summer Dress"),"Summer Dresses page is not diplayed");
 				
 		//Select blue color product and click on 'Quick View'
-	 	CategoryPage category = new CategoryPage();
+	 	CategoryPage category = new CategoryPage(driver);
 	 	category.ClickOnListView();		
 	 	Boolean isBlueColurItemFound =  category.AddDreesToCart("color-blue");
 	 	Assert.assertTrue(isBlueColurItemFound,"Blue color product is not present");

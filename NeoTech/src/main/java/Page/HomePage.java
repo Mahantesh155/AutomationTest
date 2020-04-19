@@ -11,10 +11,13 @@ import NewTech.NeoTech.BaseTest;
 
 public class HomePage extends BaseTest
 {
-
 	@FindBy(xpath="(//a[text()='Dresses'])[2]")private WebElement mouseHoverDresses;
 	@FindBy(xpath="(//a[text()='Summer Dresses'])[2]")private WebElement clickSummer;
-	
+	@FindBy(xpath="//span[text()='Mahantesh Patil']")private WebElement userAccount;
+	@FindBy(xpath="//span[text()='My wishlists']")private WebElement wishList;
+	@FindBy(className = "(By.className(\"product_infos\")).findElement(By.className(\"product-name\"))")private WebElement productDetail;
+	@FindBy(linkText = "View")private WebElement viewLink;
+			
 	/**
 	 *function to Click on Summer Dresses in Dresses Tab
 	 */
@@ -30,8 +33,7 @@ public class HomePage extends BaseTest
 	{
 		//pojo.mouseAction();
 		Actions a=new Actions(driver);
-		a.moveToElement(mouseHoverDresses).perform();
-		
+		a.moveToElement(mouseHoverDresses).perform();		
 	}
 	
 	public HomePage(WebDriver driver)
@@ -43,14 +45,14 @@ public class HomePage extends BaseTest
 	 */
 	public void clickOnMyAccount()
 	{
-		driver.findElement(By.xpath("//span[text()='Mahantesh Patil']")).click();
+		userAccount.click();
 	}
 	/**
 	 *function to Click on WishList added
 	 */
 	public void clickOnWishList() throws InterruptedException
 	{
-		driver.findElement(By.xpath("//span[text()='My wishlists']")).click();
+		wishList.click();
 		Thread.sleep(2000);
 	}
 	/**
@@ -58,7 +60,7 @@ public class HomePage extends BaseTest
 	 */
 	public void ClickOnViewWishItem() throws InterruptedException
 	{
-		driver.findElement(By.linkText("View")).click();
+		viewLink.click();
 		Thread.sleep(2000);
 	}
 	
